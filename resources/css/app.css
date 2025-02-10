@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", serif; 
+}
+
+body { 
+    scroll-behavior: smooth;
+}
+
+:root {
+    --main-btn-bg-color: #F7D100;
+    --main-btn-txt-color: #1e1e1e;
+    --main-text-color: #c4c4c4;
+    --site-bg-color: #242430;
+    --inside-cards-bg-color: #1B1B26;
+    --accent-text-color: #f7d100;
+}
+
+button.do-something-btn {
+    background-color: var(--main-btn-bg-color);
+    color: var(--main-btn-txt-color);
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    border: none;
+    font-weight: bold;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+button.do-something-btn > a {
+    text-decoration: none !important;
+    color: var(--main-btn-txt-color);
+}
+
+button.do-something-btn > a:hover {
+    cursor: pointer;
+    background-color: var(--main-btn-txt-color);
+    color: var(--main-btn-bg-color);
+    transform: scale(1.05) translateY(-3px);
+}
+
+button.do-something-btn:hover {
+    cursor: pointer;
+    background-color: var(--main-btn-txt-color);
+    color: var(--main-btn-bg-color);
+    transform: scale(1.05) translateY(-3px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+button.do-something-btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}

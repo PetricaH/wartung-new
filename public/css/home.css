@@ -1,0 +1,502 @@
+/* --main-btn-bg-color: #F7D100;
+--main-btn-txt-color: #1e1e1e;
+--main-text-color: #ffffff;
+--site-bg-color: #242430;
+--inside-cards-bg-color: #1B1B26;
+--accent-text-color: #f7d100; */
+
+.body-inside {
+    max-width: 1000px;
+    width: 90%;
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    justify-content: center;
+}
+
+.body-inside > * {
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+    .body-inside {
+        width: 90%; /* Adjust width for tablets and larger screens */
+    }
+}
+
+@media (min-width: 1024px) {
+    .body-inside {
+        width: 90%; /* Adjust width for desktops */
+    }
+}
+
+@media (min-width: 1300px) {
+    .body-inside {
+        width: 1300px; /* Set max-width for very large screens */
+    }
+}
+
+h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+    color: var(--main-text-color);
+}
+
+#hero-section {
+    background: url('/images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Overlay color layer */
+#hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(36, 36, 48, 0.73);
+    z-index: 1;
+}
+
+#hero-section::after {
+    content: "";
+    position: absolute;
+    bottom: -20%;
+    left: 0;
+    width: 100%;
+    height: 1000px;
+    background: url('/images/hero-bg-top-layer.png') no-repeat center bottom;
+    z-index: 1;
+}
+
+.hero-text-part {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -85%);
+    z-index: 2; 
+    padding: 20px;
+    color: #fff;
+}
+
+.hero-text-part button {
+    margin-top: 10px;
+}
+
+.hero-text-part span {
+    color: var(--accent-text-color);
+}
+
+body {
+    background-color: var(--site-bg-color);
+}
+
+.dynamic-stats-container {
+    width: 90%;
+    background-color: var(--site-bg-color);
+    border-radius: 20px;
+    box-shadow: 0 0 36.3px rgba(255, 248, 207, .1);
+    position: absolute;
+    top: 105%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    display: grid;
+    gap: 10px;
+    grid-auto-flow: row;
+    padding: 10px;
+}
+
+/* Mobile Layout */
+.dynamic-stats-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+        "wartung-team preffered-product"
+        "top-clients top-clients"
+        "sales-last-year sales-last-year";
+}
+
+.sales-last-year { grid-area: sales-last-year; }
+.top-clients { grid-area: top-clients; }
+.wartung-team { grid-area: wartung-team; }
+.preffered-product { grid-area: preffered-product; }
+
+/* Larger Screens Layout */
+@media (min-width: 768px) {
+    .dynamic-stats-container {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+            "wartung-team sales-last-year sales-last-year"
+            "top-clients top-clients preffered-product";
+    }
+}
+
+/* Styling for sections */
+.wartung-team, .preffered-product, .top-clients, .sales-last-year {
+    background-color: var(--inside-cards-bg-color, #444);
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+/* Additional styling for client list */
+.top-clients ul {
+    list-style: none;
+    padding: 0;
+}
+
+.top-clients ul li {
+    background-color: #555;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.number-container {
+    position: relative;
+    display: inline-block;
+}
+
+.line-graph {
+    width: 100%;
+    height: 20px;
+    overflow: visible;
+    margin-bottom: 10px; /* Space between graph and text */
+}
+
+.graph-line {
+    stroke: #ff9800;
+    stroke-width: 2;
+    fill: none;
+    animation: draw-graph 2s infinite;
+}
+
+@keyframes draw-graph {
+    from {
+        stroke-dasharray: 0 100;
+    }
+    to {
+        stroke-dasharray: 100 100;
+    }
+}
+
+#research-case-study {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+}
+
+#research-case-study p {
+    color: var(--main-text-color);
+}
+
+.case-study-card {
+    width: 100%;
+    height: 200px;
+    background-color: red;
+    position: relative;
+    overflow: hidden;
+    background: url('/images/case-study-bg.png');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 36.3px rgba(255, 248, 207, .1);
+    border-radius: 20px;
+}
+
+.case-study-card::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 45%;
+    background: linear-gradient(to top, #242430, rgba(36,36,48,0));
+    pointer-events: none; 
+    z-index: 0;
+  }
+
+  .case-study-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+.case-study-card button {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    z-index: 2;
+}
+
+.fa-arrow-right {
+    padding-left: 15px;
+}
+
+#certificates {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('/images/certificates-imgs/certificates-bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    width: 100%;
+    height: 40vh;
+}
+
+#certificates::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      linear-gradient(to bottom, #242430 0%, rgba(36,36,48,0) 45%),
+      linear-gradient(to top, #242430 0%, rgba(36,36,48,0) 45%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+  #certificates > * {
+    position: relative;
+    z-index: 1;
+  }
+
+#certificates p {
+    color: var(--main-text-color);
+    max-width: 400px;
+    padding-bottom: 50px;
+}
+
+#certificates span {
+    color: var(--accent-text-color);
+}
+
+.certificates-carousel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 5vw;
+}
+
+.certificates-carousel img {
+    height: 70px;
+}
+
+/* VIDEO TESTIMONIAL XIMENA DOWNWARDS */
+
+.video-testimonial {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--inside-cards-bg-color);
+    border-radius: 20px;
+}
+
+.video-testimonial .business-name {
+    font-size: 2rem;
+    color: var(--main-text-color);
+    padding-bottom: 60px;
+    padding-top: 50px;
+}
+
+.video-container {
+    box-shadow: 0 0 36.3px rgba(255, 248, 207, .1);
+    width: 90%;
+    height: 250px;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .video-container.ximena,
+    .video-container.imocon {
+    background-position: center !important; 
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    }
+}
+
+.video-container.ximena,
+.video-container.imocon {
+  background-position: center center; 
+  background-repeat: no-repeat;
+  background-size: 120%;
+  transition: background-size 0.4s ease-out;
+}
+
+/* Define the background images */
+.video-container.ximena {
+  background-image: url('/images/testi-ximena.png');
+}
+
+.video-container.imocon {
+  background-image: url('/images/testi-imocon.png');
+}
+
+/* On hover, zoom out the image to 100% (actual container size) */
+.video-container.ximena:hover,
+.video-container.imocon:hover {
+  background-size: 100%;
+}
+
+.video-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(36, 36, 48, 0.73);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.video-container:hover::before {
+    background: rgba(36, 36, 48, 0);
+    pointer-events: none;
+}
+
+.video-container button {
+    z-index: 1;
+}
+
+.video-testimonial p {
+    color: var(--main-text-color);
+    font-weight: 200;
+    padding: 30px 10px 0 10px;
+    max-width: 500px;
+}
+
+.video-testimonial .testi-bar {
+    width: 15vw;
+    height: 1px;
+    background-color: var(--accent-text-color);
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.video-testimonial .testi-name {
+    color: var(--accent-text-color);
+    font-weight: bold;
+    margin-bottom: 60px;
+}
+/* VIDEO TESTIMONAIL XIMENA UPWARDS */
+
+/* Container styling */
+.companies-we-worked-with-container {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+  
+  /* Carousel outer container */
+  .companies-carousel {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  
+  /* The container that clips the moving track */
+  .carousel-track-container {
+    overflow: hidden;
+  }
+  
+  /* Carousel track: flex container that holds all items */
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  /* Carousel items */
+  .carousel-item {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  /* Responsive: on screens 768px and wider, show 3 items per page */
+  @media (min-width: 768px) {
+    .carousel-item {
+      flex: 0 0 calc(100% / 3);
+    }
+  }
+  
+  /* Make images responsive */
+  .carousel-item img {
+    max-width: 50%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Navigation arrow buttons */
+  .carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 5px;
+    background-color: var(--main-btn-bg-color);
+    color: var(--main-btn-txt-color);
+  }
+  
+  .carousel-control.prev {
+    left: 10px;
+  }
+  
+  .carousel-control.next {
+    right: 10px;
+  }
+  
+  /* Navigation dots container */
+  .carousel-dots {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  /* Style for each dot */
+  .carousel-dots button {
+    background: #ddd;
+    border: none;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* Active dot styling */
+  .carousel-dots button.active {
+    background: var(--accent-text-color);
+  }
+  
