@@ -87,59 +87,67 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    const clients = [
-        { name: "TRANSAVIA SA", value: 300 },
-        { name: "PITYOKA GYAR SRL", value: 250 },
-        { name: "MEATHOUSE ROMANIA SRL", value: 200 },
-        { name: "SC TITAL EDILITARA SRL", value: 150 }
-    ];
+  // Elements
+  const employeeCountElement = document.querySelector('.wartung-team .number-container span');
+  const salesAmountElement = document.querySelector('.sales-last-year .number-container span');
+  const averageDailySalesElement = document.getElementById('average-daily-sales');
 
-    const clientList = document.getElementById('client-list');
-    const maxValue = Math.max(...clients.map(client => client.value));
+  // Target values
+  const targetEmployeeCount = 51;
+  const targetSalesAmount = 14086044; // 14,086,044 Lei
+  const targetAverageDailySales = 38486; // 38,486 Lei
 
-    clients.forEach(client => {
-        const listItem = document.createElement('li');
-        listItem.textContent = client.name;
+  // Animation settings
+  const animationDuration = 30000; // 6 seconds (3x slower)
+  const salesIncrement = 1000; // Increment by 1 million
+  const employeeIncrement = 1; // Increment by 1
+  const averageDailySalesIncrement = 10; // Increment by 100
 
-        const bar = document.createElement('div');
-        bar.classList.add('bar');
-        bar.style.setProperty('--bar-width', `${(client.value / maxValue) * 100}%`);
+  // Start values
+  let employeeCount = 0;
+  let salesAmount = 0;
+  let averageDailySales = 0;
 
-        listItem.appendChild(bar);
-        clientList.appendChild(listItem);
-    });
+  // Calculate step intervals
+  const employeeSteps = Math.ceil(targetEmployeeCount / (animationDuration / 60)); // 60fps
+  const salesSteps = Math.ceil(targetSalesAmount / salesIncrement / (animationDuration / 60));
+  const averageDailySalesSteps = Math.ceil(targetAverageDailySales / averageDailySalesIncrement / (animationDuration / 60));
 
-    // Animate numbers
-    const employeeCountElement = document.querySelector('.wartung-team .number-container span');
-    const salesAmountElement = document.querySelector('.sales-last-year .number-container span');
+  // Animate numbers
+  function animateNumbers() {
+      if (employeeCount < targetEmployeeCount) {
+          employeeCount += employeeSteps;
+          if (employeeCount > targetEmployeeCount) employeeCount = targetEmployeeCount;
+          employeeCountElement.textContent = employeeCount;
+      }
 
-    let employeeCount = 0;
-    let salesAmount = 0;
-    const targetEmployeeCount = 51;
-    const targetSalesAmount = 14086044;
+      if (salesAmount < targetSalesAmount) {
+          salesAmount += salesSteps * salesIncrement;
+          if (salesAmount > targetSalesAmount) salesAmount = targetSalesAmount;
+          salesAmountElement.textContent = (salesAmount / 1000000).toFixed(0) + '.000.000'; // Format as 1.000.000
+      }
 
-    function animateNumbers() {
-        if (employeeCount < targetEmployeeCount) {
-            employeeCount++;
-            employeeCountElement.textContent = employeeCount;
-        }
-        if (salesAmount < targetSalesAmount) {
-            salesAmount += 1000;
-            salesAmountElement.textContent = salesAmount.toLocaleString('en-US');
-        }
+      if (averageDailySales < targetAverageDailySales) {
+          averageDailySales += averageDailySalesSteps * averageDailySalesIncrement;
+          if (averageDailySales > targetAverageDailySales) averageDailySales = targetAverageDailySales;
+          averageDailySalesElement.textContent = averageDailySales.toLocaleString('ro-RO'); // Format with commas
+      }
 
-        if (employeeCount < targetEmployeeCount || salesAmount < targetSalesAmount) {
-            requestAnimationFrame(animateNumbers);
-        } else {
-            setTimeout(() => {
-                employeeCount = 0;
-                salesAmount = 0;
-                employeeCountElement.textContent = employeeCount;
-                salesAmountElement.textContent = salesAmount;
-                animateNumbers();
-            }, 2000); // Restart after 2 seconds
-        }
-    }
+      if (employeeCount < targetEmployeeCount || salesAmount < targetSalesAmount || averageDailySales < targetAverageDailySales) {
+          requestAnimationFrame(animateNumbers);
+      } else {
+          // Reset after 2 seconds
+          setTimeout(() => {
+              employeeCount = 0;
+              salesAmount = 0;
+              averageDailySales = 0;
+              employeeCountElement.textContent = employeeCount;
+              salesAmountElement.textContent = salesAmount;
+              averageDailySalesElement.textContent = averageDailySales;
+              animateNumbers();
+          }, 10000);
+      }
+  }
 
-    animateNumbers();
+  animateNumbers();
 });

@@ -25,6 +25,10 @@
     .body-inside {
         width: 90%; /* Adjust width for tablets and larger screens */
     }
+
+    #hero-section {
+        text-align: center;
+    }
 }
 
 @media (min-width: 1024px) {
@@ -33,14 +37,21 @@
     }
 }
 
-@media (min-width: 1300px) {
-    .body-inside {
-        width: 1300px; /* Set max-width for very large screens */
+@media (max-width: 768px) {
+    .dynamic-stats-container i {
+        font-size: 1.5rem !important;
+        padding-right: 5px !important;
+    }
+    
+    .dynamic-stats-container span {
+        color: var(--accent-text-color);
+        font-weight: bold;
+        font-size: 2.5rem !important;
     }
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: clamp(3rem, 8vw, 4rem) !important;
     text-transform: uppercase;
     color: var(--main-text-color);
 }
@@ -62,7 +73,7 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(36, 36, 48, 0.73);
+    background: rgba(36, 36, 48, 0.8);
     z-index: 1;
 }
 
@@ -85,10 +96,16 @@ h1 {
     z-index: 2; 
     padding: 20px;
     color: #fff;
+    width: 70%;
+    height: 30vh;
 }
 
 .hero-text-part button {
-    margin-top: 10px;
+    margin-top: 50px;
+}
+
+.hero-text-part i {
+    padding-left: 15px;
 }
 
 .hero-text-part span {
@@ -100,10 +117,9 @@ body {
 }
 
 .dynamic-stats-container {
-    width: 90%;
     background-color: var(--site-bg-color);
     border-radius: 20px;
-    box-shadow: 0 0 36.3px rgba(255, 248, 207, .1);
+    box-shadow: 0 10px 20px rgba(247, 209, 0, 0.2);
     position: absolute;
     top: 105%;
     left: 50%;
@@ -113,20 +129,54 @@ body {
     gap: 10px;
     grid-auto-flow: row;
     padding: 10px;
+    max-width: 1000px;
 }
 
 /* Mobile Layout */
 .dynamic-stats-container {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
+    color: var(--main-text-color);
     grid-template-areas:
         "wartung-team preffered-product"
-        "top-clients top-clients"
+        "average-daily-sales average-daily-sales"
         "sales-last-year sales-last-year";
 }
 
+.preffered-product {
+    position: relative;
+    overflow: hidden;
+    text-align: left !important;
+}
+
+.preffered-product h2, 
+.preffered-product p,
+span {
+    position: relative;
+    z-index: 2;
+}
+
+.preffered-product img {
+    position: absolute;
+    width: 150px;
+    bottom: -50px;
+    right: 10px;
+    z-index: 1;
+}
+
+.dynamic-stats-container i {
+    font-size: 3rem;
+    padding-right: 5px;
+}
+
+.dynamic-stats-container span {
+    color: var(--accent-text-color);
+    font-weight: bold;
+    font-size: 4.5rem;
+}
+
 .sales-last-year { grid-area: sales-last-year; }
-.top-clients { grid-area: top-clients; }
+.average-daily-sales { grid-area: average-daily-sales; }
 .wartung-team { grid-area: wartung-team; }
 .preffered-product { grid-area: preffered-product; }
 
@@ -137,34 +187,47 @@ body {
         grid-template-rows: 1fr 1fr;
         grid-template-areas:
             "wartung-team sales-last-year sales-last-year"
-            "top-clients top-clients preffered-product";
+            "average-daily-sales average-daily-sales preffered-product";
     }
 }
 
 /* Styling for sections */
-.wartung-team, .preffered-product, .top-clients, .sales-last-year {
+.wartung-team, .preffered-product, .average-daily-sales, .sales-last-year {
     background-color: var(--inside-cards-bg-color, #444);
     padding: 20px;
     text-align: center;
     border-radius: 15px;
 }
 
-/* Additional styling for client list */
-.top-clients ul {
-    list-style: none;
-    padding: 0;
-}
-
-.top-clients ul li {
-    background-color: #555;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
-}
-
 .number-container {
     position: relative;
     display: inline-block;
+}
+
+/* Add hover effects to all stats cards */
+.wartung-team, .average-daily-sales, .sales-last-year, .preffered-product {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.wartung-team:hover, .average-daily-sales:hover, .sales-last-year:hover, .preffered-product:hover {
+    transform: translateY(-10px); /* Slight lift effect */
+    box-shadow: 0 10px 20px rgba(247, 209, 0, 0.2); /* Glow effect with your accent color */
+}
+
+/* Add a subtle border glow on hover */
+.wartung-team:hover, .average-daily-sales:hover, .sales-last-year:hover, .preffered-product:hover {
+    border: 1px solid var(--accent-text-color);
+}
+
+/* Add a pulse animation to the icons on hover */
+.wartung-team:hover i, .average-daily-sales:hover i, .sales-last-year:hover i {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
 
 .line-graph {
@@ -195,7 +258,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 200px;
+    margin-top: 450px;
 }
 
 #research-case-study p {
@@ -204,15 +267,21 @@ body {
 
 .case-study-card {
     width: 100%;
-    height: 200px;
+    height: 300px;
     background-color: red;
     position: relative;
     overflow: hidden;
     background: url('/images/case-study-bg.png');
     background-size: cover;
     background-position: center;
-    box-shadow: 0 0 36.3px rgba(255, 248, 207, .1);
+    box-shadow: 0 10px 20px rgba(247, 209, 0, 0.2);
     border-radius: 20px;
+}
+
+@media (min-width: 768px) {
+    .case-study-card {
+        background-position-y: 10%;
+    }
 }
 
 .case-study-card::before {
@@ -318,7 +387,7 @@ body {
 }
 
 .video-container {
-    box-shadow: 0 0 36.3px rgba(255, 248, 207, .1);
+    box-shadow: 0 10px 20px rgba(247, 209, 0, 0.2);
     width: 90%;
     height: 250px;
     border-radius: 20px;
@@ -457,16 +526,9 @@ body {
   /* Navigation arrow buttons */
   .carousel-control {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    font-size: 1.5rem;
-    padding: 0.5rem 1rem;
+    top: 30%;
     cursor: pointer;
     z-index: 2;
-    border-radius: 5px;
-    background-color: var(--main-btn-bg-color);
-    color: var(--main-btn-txt-color);
   }
   
   .carousel-control.prev {
@@ -499,4 +561,221 @@ body {
   .carousel-dots button.active {
     background: var(--accent-text-color);
   }
-  
+
+#what-about-prices-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.what-about-prices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* On larger screens, align text and graphic parts in a row */
+@media (min-width: 768px) {
+    .what-about-prices-container {
+        flex-direction: row; /* Align horizontally */
+        align-items: center; /* Center items vertically */
+        gap: 40px; /* Increase space between text and graphic parts */
+    }
+
+    .text-part, .graphic-part {
+        flex: 1; /* Allow both parts to take up equal space */
+    }
+}
+
+/* Text part styling */
+.text-part {
+    color: var(--main-text-color);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.text-part span {
+    color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Graphic part styling */
+.graphic-part {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: var(--main-text-color);
+    background-color: var(--inside-cards-bg-color);
+    position: relative;
+    border-radius: 20px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.graphic-part span:nth-child(1) {
+    font-size: 3.5rem;
+    color: var(--accent-text-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.graphic-part i {
+    font-size: 10rem;
+    color: var(--accent-text-color);
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.disclaimers {
+    position: absolute;
+    font-size: 0.5rem;
+    color: var(--main-text-color);
+    text-align: left;
+    bottom: -50px;
+    left: 0;
+}
+
+/* General Styles */
+.what-about-results-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.what-about-results-card {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--inside-cards-bg-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.what-about-results-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Dual Image Background for CURATENIE Cards */
+.what-about-results-dual-images {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.what-about-results-image-left, .what-about-results-image-right {
+    background-size: cover;
+    background-position: center;
+}
+
+.what-about-results-image-left {
+    background-image: url('path/to/left-image.jpg');
+}
+
+.what-about-results-image-right {
+    background-image: url('path/to/right-image.jpg');
+}
+
+/* Single Image Background for SERVICII Cards */
+.what-about-results-single-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.what-about-results-card-serv .what-about-results-single-image {
+    background-image: url('path/to/image-3.jpg');
+}
+
+/* Card Title */
+.what-about-results-card-title {
+    position: relative;
+    z-index: 1;
+    font-size: 1.5rem;
+    color: var(--main-text-color);
+    text-transform: uppercase;
+    transition: transform 0.3s ease;
+}
+
+/* Hover Buttons for CURATENIE Cards */
+.what-about-results-hover-buttons {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.what-about-results-hover-button {
+    padding: 10px 20px;
+    background-color: var(--accent-text-color);
+    color: var(--main-btn-txt-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.what-about-results-hover-button-left {
+    transform: translateX(-100%);
+}
+
+.what-about-results-hover-button-right {
+    transform: translateX(100%);
+}
+
+/* Hover Button for SERVICII Cards */
+.what-about-results-hover-button-bottom {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: bottom 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hover Effects */
+.what-about-results-card:hover .what-about-results-card-title {
+    transform: translateY(-50px);
+}
+
+.what-about-results-card:hover .what-about-results-hover-buttons {
+    opacity: 1;
+}
+
+.what-about-results-card:hover .what-about-results-hover-button-left {
+    transform: translateX(20px);
+}
+
+.what-about-results-card:hover .what-about-results-hover-button-right {
+    transform: translateX(-20px);
+}
+
+.what-about-results-card:hover .what-about-results-hover-button-bottom {
+    bottom: 20px;
+    opacity: 1;
+}

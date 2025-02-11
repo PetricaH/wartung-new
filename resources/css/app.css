@@ -42,6 +42,7 @@ button.do-something-btn > a:hover {
 }
 
 button.do-something-btn:hover {
+    border: 1px solid var(--accent-text-color);
     cursor: pointer;
     background-color: var(--main-btn-txt-color);
     color: var(--main-btn-bg-color);

@@ -1,4 +1,4 @@
-@media (max-width: 1785px) {
+@media (max-width: 768px) {
     #nav_menu {
         display: flex;
         flex-direction: column;
@@ -22,6 +22,7 @@
     #nav_menu.active {
         max-height: 100vh; /* Expand to full height */
         opacity: 1; /* Fully visible */
+        border-radius: 15px;
     }
 
     /* Menu items animation */
@@ -75,7 +76,7 @@
     }
 }
 
-@media (min-width: 1786px) {
+@media (min-width: 769px) {
     /* Ensure nav_menu styling for wider screens */
     #nav_menu {
         width: 70%;
@@ -113,15 +114,18 @@
 
 /* navbar when tablet or desktop */
 .navbar {
-    background-image: linear-gradient( to bottom, rgba(15, 20, 19, 1), rgba(15, 20, 19, 0.8), rgba(15, 20, 19, 0.4), rgba(15, 20, 19, 0.2), rgba(15, 20, 19, 0) );
+    background-color: var(--inside-cards-bg-color);
     height: 100px;
-    margin: 0 auto;
     padding: 10px 15px;
     display: flex;
+    left: 50%;
+    top: 30px;
+    transform: translateX(-50%);
     align-items: center;
     justify-content: space-between;
     position: fixed;
-    width: 100%;
+    width: 90%;
+    border-radius: 15px;
     z-index: 9999;
 }
 .menu_toggle {
@@ -138,7 +142,7 @@
     align-items: center;
 }
 #logo_image {
-    width: 100px;
+    width: 50px;
 }
 .bar {
     display: block;
