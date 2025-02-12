@@ -24,6 +24,21 @@
     {{-- Navbar Specific CSS --}}
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 
+    {{-- FOOTER Specific CSS --}}
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+
+    @if(Request::is('privacy-policy'))
+    <link rel="stylesheet" href="{{ asset('css/privacy-policy.css') }}">
+    @elseif(Request::is('cookies-policy'))
+    <link rel="stylesheet" href="{{ asset('css/cookie-policy.css') }}">
+    @elseif(Request::is('careers'))
+    <link rel="stylesheet" href="{{ asset('css/careers.css') }}">
+    @elseif(Request::is('product-results'))
+    <link rel="stylesheet" href="{{ asset('css/product-results.css') }}">
+    @elseif(Request::is('industrii'))
+    <link rel="stylesheet" href="{{ asset('css/industrii.css') }}">
+    @endif
+    
     @yield('head')
 
 </head>
@@ -35,6 +50,8 @@
     <div class="container mt-4">
         @yield('content')
     </div>
+
+    @include('partials.footer')
 
     <!-- Link to your compiled JavaScript -->
     @vite(['resources/js/app.js', 'public/js/navbar.js', 'public/js/home.js'])
