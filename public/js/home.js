@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+  /* ---------------- Carousel Code ---------------- */
   const track = document.querySelector('.carousel-track');
   const items = Array.from(document.querySelectorAll('.carousel-item'));
   const prevButton = document.querySelector('.carousel-control.prev');
@@ -9,38 +10,27 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentPage = 0;
   let totalItems = items.length;
 
-  // Determine how many items are visible per page based on the viewport width
   function getItemsPerView() {
     return window.innerWidth >= 768 ? 3 : 1;
   }
-
-  // Calculate total pages (each "page" is one set of visible items)
   function getTotalPages() {
     return Math.ceil(totalItems / getItemsPerView());
   }
-
   let totalPages = getTotalPages();
 
-  // Update the carousel's position based on the current page
   function updateCarousel() {
-    // Update items per view and total pages in case of a resize
     const itemsPerView = getItemsPerView();
     totalPages = getTotalPages();
     if (currentPage > totalPages - 1) {
       currentPage = totalPages - 1;
     }
-    
-    // Use the width of the container for page width
     const containerWidth = trackContainer.getBoundingClientRect().width;
     const shift = currentPage * containerWidth;
     track.style.transform = `translateX(-${shift}px)`;
-    
     updateDots();
   }
-
-  // Create navigation dots dynamically
   function createDots() {
-    dotsContainer.innerHTML = ''; // clear any existing dots
+    dotsContainer.innerHTML = '';
     for (let i = 0; i < totalPages; i++) {
       const dot = document.createElement('button');
       if (i === currentPage) dot.classList.add('active');
@@ -51,103 +41,150 @@ document.addEventListener('DOMContentLoaded', function() {
       dotsContainer.appendChild(dot);
     }
   }
-
-  // Update the active dot styling
   function updateDots() {
     const dots = dotsContainer.querySelectorAll('button');
     dots.forEach((dot, index) => {
       dot.classList.toggle('active', index === currentPage);
     });
   }
-
-  // Arrow button event listeners
   prevButton.addEventListener('click', function() {
     if (currentPage > 0) {
       currentPage--;
       updateCarousel();
     }
   });
-
   nextButton.addEventListener('click', function() {
     if (currentPage < totalPages - 1) {
       currentPage++;
       updateCarousel();
     }
   });
-
-  // Update carousel and dots on window resize
   window.addEventListener('resize', function() {
     updateCarousel();
     createDots();
   });
-
-  // Initial setup
   createDots();
   updateCarousel();
-});
 
-document.addEventListener('DOMContentLoaded', function () {
-  // Elements
+  /* --------------- Animate Numbers Code --------------- */
   const employeeCountElement = document.querySelector('.wartung-team .number-container span');
   const salesAmountElement = document.querySelector('.sales-last-year .number-container span');
   const averageDailySalesElement = document.getElementById('average-daily-sales');
 
-  // Target values
   const targetEmployeeCount = 51;
-  const targetSalesAmount = 14086044; // 14,086,044 Lei
-  const targetAverageDailySales = 38486; // 38,486 Lei
+  const targetSalesAmount = 14086044;
+  const targetAverageDailySales = 38486;
 
-  // Animation settings
-  const animationDuration = 30000; // 6 seconds (3x slower)
-  const salesIncrement = 1000; // Increment by 1 million
-  const employeeIncrement = 1; // Increment by 1
-  const averageDailySalesIncrement = 10; // Increment by 100
+  const animationDuration = 30000; // in ms
+  const salesIncrement = 1000;
+  const employeeIncrement = 1;
+  const averageDailySalesIncrement = 10;
 
-  // Start values
   let employeeCount = 0;
   let salesAmount = 0;
   let averageDailySales = 0;
 
-  // Calculate step intervals
-  const employeeSteps = Math.ceil(targetEmployeeCount / (animationDuration / 60)); // 60fps
+  const employeeSteps = Math.ceil(targetEmployeeCount / (animationDuration / 60));
   const salesSteps = Math.ceil(targetSalesAmount / salesIncrement / (animationDuration / 60));
   const averageDailySalesSteps = Math.ceil(targetAverageDailySales / averageDailySalesIncrement / (animationDuration / 60));
 
-  // Animate numbers
   function animateNumbers() {
-      if (employeeCount < targetEmployeeCount) {
-          employeeCount += employeeSteps;
-          if (employeeCount > targetEmployeeCount) employeeCount = targetEmployeeCount;
-          employeeCountElement.textContent = employeeCount;
-      }
-
-      if (salesAmount < targetSalesAmount) {
-          salesAmount += salesSteps * salesIncrement;
-          if (salesAmount > targetSalesAmount) salesAmount = targetSalesAmount;
-          salesAmountElement.textContent = (salesAmount / 1000000).toFixed(0) + '.000.000'; // Format as 1.000.000
-      }
-
-      if (averageDailySales < targetAverageDailySales) {
-          averageDailySales += averageDailySalesSteps * averageDailySalesIncrement;
-          if (averageDailySales > targetAverageDailySales) averageDailySales = targetAverageDailySales;
-          averageDailySalesElement.textContent = averageDailySales.toLocaleString('ro-RO'); // Format with commas
-      }
-
-      if (employeeCount < targetEmployeeCount || salesAmount < targetSalesAmount || averageDailySales < targetAverageDailySales) {
-          requestAnimationFrame(animateNumbers);
-      } else {
-          // Reset after 2 seconds
-          setTimeout(() => {
-              employeeCount = 0;
-              salesAmount = 0;
-              averageDailySales = 0;
-              employeeCountElement.textContent = employeeCount;
-              salesAmountElement.textContent = salesAmount;
-              averageDailySalesElement.textContent = averageDailySales;
-              animateNumbers();
-          }, 10000);
-      }
+    if (employeeCount < targetEmployeeCount) {
+      employeeCount += employeeSteps;
+      if (employeeCount > targetEmployeeCount) employeeCount = targetEmployeeCount;
+      employeeCountElement.textContent = employeeCount;
+    }
+    if (salesAmount < targetSalesAmount) {
+      salesAmount += salesSteps * salesIncrement;
+      if (salesAmount > targetSalesAmount) salesAmount = targetSalesAmount;
+      salesAmountElement.textContent = (salesAmount / 1000000).toFixed(0) + '.000.000';
+    }
+    if (averageDailySales < targetAverageDailySales) {
+      averageDailySales += averageDailySalesSteps * averageDailySalesIncrement;
+      if (averageDailySales > targetAverageDailySales) averageDailySales = targetAverageDailySales;
+      averageDailySalesElement.textContent = averageDailySales.toLocaleString('ro-RO');
+    }
+    if (employeeCount < targetEmployeeCount || salesAmount < targetSalesAmount || averageDailySales < targetAverageDailySales) {
+      requestAnimationFrame(animateNumbers);
+    } else {
+      setTimeout(() => {
+        employeeCount = 0;
+        salesAmount = 0;
+        averageDailySales = 0;
+        employeeCountElement.textContent = employeeCount;
+        salesAmountElement.textContent = salesAmount;
+        averageDailySalesElement.textContent = averageDailySales;
+        animateNumbers();
+      }, 10000);
+    }
   }
-
   animateNumbers();
+
+  /* --------------- Steps Section & Contact Modal --------------- */
+  const stepButtons = document.querySelectorAll('.step-button');
+  const stepContents = document.querySelectorAll('.step-content');
+
+  stepButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const step = button.getAttribute('data-step');
+      stepButtons.forEach(btn => btn.classList.remove('active'));
+      stepContents.forEach(content => content.classList.remove('active'));
+      button.classList.add('active');
+      document.querySelector(`.step-content[data-step="${step}"]`).classList.add('active');
+      updateConnector(); // Update blob connector when step changes
+    });
+  });
+
+  const contactButtons = document.querySelectorAll('.contact-industry-btn');
+  const modal = document.querySelector('.contact-modal');
+  const closeModal = document.querySelector('.close-modal');
+  const selectedIndustryInput = document.getElementById('selected-industry');
+
+  contactButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const industry = btn.getAttribute('data-industry');
+      selectedIndustryInput.value = industry;
+      modal.style.display = 'flex';
+    });
+  });
+  closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+  /* --------------- Blob Connector for Steps Section --------------- */
+  // Assumes you have a .steps-connector element in your HTML between the buttons and content
+  const connector = document.querySelector('.steps-connector');
+  const stepsSection = document.querySelector('#steps-to-success-section');
+  const buttonsContainer = document.querySelector('.steps-buttons-container');
+  const contentContainer = document.querySelector('.steps-content-container');
+
+  function updateConnector() {
+    const activeButton = document.querySelector('.step-button.active');
+    if (!activeButton || !connector) return;
+    
+    // Calculate positions relative to the entire steps section
+    const sectionRect = stepsSection.getBoundingClientRect();
+    const buttonRect = activeButton.getBoundingClientRect();
+    const buttonsRect = buttonsContainer.getBoundingClientRect();
+    const contentRect = contentContainer.getBoundingClientRect();
+    
+    // Determine the horizontal center of the active button relative to the section
+    const buttonCenter = buttonRect.left + buttonRect.width / 2 - sectionRect.left;
+    connector.style.setProperty('--connector-left', `${buttonCenter}px`);
+    
+    // Position the connector between the bottom of the buttons and the top of the content
+    const gapTop = buttonsRect.bottom - sectionRect.top;
+    const gapBottom = contentRect.top - sectionRect.top;
+    const gapHeight = gapBottom - gapTop;
+    
+    connector.style.top = `${gapTop}px`;
+    connector.style.height = `${gapHeight}px`;
+  }
+  updateConnector();
+  window.addEventListener('resize', updateConnector);
 });

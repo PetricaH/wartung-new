@@ -201,5 +201,115 @@
             </div>
         </section>
         
+        <section id="steps-to-success-section" class="steps-to-success-section">
+            <h2>Dar Cum Îți Putem Garanta Rezultate?</h2>
+            <h3>PRIN 3 PAȘI SIMPLI</h3>
+            <div class="steps-buttons-container">
+              <button class="step-button active" data-step="1">Pasul 1</button>
+              <button class="step-button" data-step="2">Pasul 2</button>
+              <button class="step-button" data-step="3">Pasul 3</button>
+            </div>
+            
+            <!-- Connector element for the blob effect -->
+            <div class="steps-connector"></div>
+          
+            <div class="steps-content-container">
+              <div class="step-content active" data-step="1">
+                <i class="fa-solid fa-question"></i>
+                <p>
+                  Ne informăm de problema care trebuie rezolvată și, dacă trebuie să facturăm un produs, facem asta doar dacă
+                  considerăm că firma va implementa corect soluțiile noastre și va obține rezultate excelente.
+                </p>
+              </div>
+              <div class="step-content" data-step="2">
+                <i class="fa-solid fa-lightbulb"></i>
+                <p>
+                  În mod normal, cu pasul 1 deja vom ști ce produs poate rezolva problema, dar, dacă este necesar, unul dintre
+                  inginerii noștri de presales, specializat în domeniu, va studia nevoia deplasându-se la locația ta.
+                </p>
+              </div>
+              <div class="step-content" data-step="3">
+                <i class="fa-solid fa-circle-check"></i>
+                <p>
+                  Recomandăm soluția sau setul de soluții specifice pentru cazul tău. Se trimit apoi testele – nu plătești nimic
+                  până când nu ești de acord cu soluția propusă.
+                </p>
+              </div>
+            </div>
+          </section>
+          
+
+        <!-- Contact Industries Section -->
+        <section class="contact-industries-section">
+            <div class="industry-row">
+                <i class="fas fa-utensils"></i>
+                <span>Industria Alimentara</span>
+                <div class="industry-button-connector"></div>
+                <button class="contact-industry-btn" data-industry="alimentara">Vorbeste cu un consultant specializat</button>
+            </div>
+            
+            <div class="industry-row">
+                <i class="fa-solid fa-bed"></i>
+                <span>Industria HORECA</span>
+                <div class="industry-button-connector"></div>
+                <button class="contact-industry-btn" data-industry="horeca">Vorbeste cu un consultant specializat</button>
+            </div>
+
+            <div class="industry-row">
+                <i class="fa-solid fa-person-digging"></i>
+                <span>Industria Construcții</span>
+                <div class="industry-button-connector"></div>
+                <button class="contact-industry-btn" data-industry="construcții">Vorbeste cu un consultant specializat</button>
+            </div>
+
+            <div class="industry-row">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <span>Industria Metalurgică</span>
+                <div class="industry-button-connector"></div>
+                <button class="contact-industry-btn" data-industry="metalurgica">Vorbeste cu un consultant specializat</button>
+            </div>
+
+            <div class="industry-row">
+                <i class="fa-solid fa-car-side"></i>
+                <span>Industria Automotive</span>
+                <div class="industry-button-connector"></div>
+                <button class="contact-industry-btn" data-industry="automotive">Vorbeste cu un consultant specializat</button>
+            </div>
+
+            <div class="industry-row">
+                <i class="fa-solid fa-building-columns"></i>
+                <span>Instituții Publice</span>
+                <div class="industry-button-connector"></div>
+                <button class="contact-industry-btn" data-industry="institutii-publice">Vorbeste cu un consultant specializat</button>
+            </div>
+        </section>
     </div>
+
+    <!-- Contact Form Modal -->
+<div class="contact-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Contact Form</h2>
+        <form id="industry-contact-form">
+            <input type="hidden" id="selected-industry" name="industry">
+            
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Email:</label>
+                <input type="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Message:</label>
+                <textarea required></textarea>
+            </div>
+            
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</div>
 @endsection

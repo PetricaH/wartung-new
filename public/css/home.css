@@ -5,6 +5,10 @@
 --inside-cards-bg-color: #1B1B26;
 --accent-text-color: #f7d100; */
 
+section {
+    margin-top: 100px !important;
+}
+
 .body-inside {
     max-width: 1000px;
     width: 90%;
@@ -63,6 +67,7 @@ h1 {
     position: relative;
     width: 100%;
     height: 100vh;
+    margin-top: 0 !important;
 }
 
 /* Overlay color layer */
@@ -258,7 +263,7 @@ span {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 450px;
+    margin-top: 450px !important;
 }
 
 #research-case-study p {
@@ -639,19 +644,25 @@ span {
     left: 0;
 }
 
-/* General Styles */
+/* ----------------------------- */
+/*   WHAT ABOUT RESULTS CARDS    */
+/* ----------------------------- */
+
+/* General Styles (mobile-first) */
 .what-about-results-cards-container {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    flex-direction: column;
+    gap: 15px;
     padding: 20px;
+    align-items: center;
     justify-content: center;
-}
-
-.what-about-results-card {
+  }
+  
+  .what-about-results-card {
     position: relative;
-    width: 300px;
-    height: 200px;
+    width: 100%;
+    max-width: 350px;
+    height: 220px;
     overflow: hidden;
     border-radius: 15px;
     display: flex;
@@ -660,64 +671,73 @@ span {
     background-color: var(--inside-cards-bg-color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.what-about-results-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-/* Dual Image Background for CURATENIE Cards */
-.what-about-results-dual-images {
+  }
+  
+  /* Desktop hover effects */
+  @media (min-width: 768px) {
+    .what-about-results-cards-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  
+    .what-about-results-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+  }
+  
+  /* Dual Image Background for CURATENIE Cards */
+  .what-about-results-dual-images {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
-}
-
-.what-about-results-image-left, .what-about-results-image-right {
+  }
+  
+  .what-about-results-image-left,
+  .what-about-results-image-right {
     background-size: cover;
     background-position: center;
-}
-
-.what-about-results-image-left {
-    background-image: url('path/to/left-image.jpg');
-}
-
-.what-about-results-image-right {
-    background-image: url('path/to/right-image.jpg');
-}
-
-/* Single Image Background for SERVICII Cards */
-.what-about-results-single-image {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
+  }
+  
+  .what-about-results-image-left {
+    background-image: url('path/to/left-image.jpg');
+  }
+  
+  .what-about-results-image-right {
+    background-image: url('path/to/right-image.jpg');
+  }
+  
+  /* Single Image Background for SERVICII Cards */
+  .what-about-results-single-image {
+    position: absolute;
+    inset: 0;
     background-size: cover;
     background-position: center;
-}
-
-.what-about-results-card-serv .what-about-results-single-image {
+  }
+  
+  .what-about-results-card-serv .what-about-results-single-image {
     background-image: url('path/to/image-3.jpg');
-}
-
-/* Card Title */
-.what-about-results-card-title {
+  }
+  
+  /* Card Title */
+  .what-about-results-card-title {
     position: relative;
     z-index: 1;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: var(--main-text-color);
     text-transform: uppercase;
+    text-align: center;
     transition: transform 0.3s ease;
-}
-
-/* Hover Buttons for CURATENIE Cards */
-.what-about-results-hover-buttons {
+  }
+  
+  /* Hover Buttons */
+  .what-about-results-hover-buttons {
     position: absolute;
     top: 50%;
     left: 0;
@@ -725,57 +745,243 @@ span {
     display: flex;
     justify-content: space-between;
     transform: translateY(-50%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.what-about-results-hover-button {
-    padding: 10px 20px;
+    opacity: 1; /* Always visible on mobile */
+  }
+  
+  .what-about-results-hover-button {
+    padding: 8px 15px;
     background-color: var(--accent-text-color);
     color: var(--main-btn-txt-color);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
-    transition: transform 0.3s ease;
-}
-
-.what-about-results-hover-button-left {
-    transform: translateX(-100%);
-}
-
-.what-about-results-hover-button-right {
-    transform: translateX(100%);
-}
-
-/* Hover Button for SERVICII Cards */
-.what-about-results-hover-button-bottom {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .what-about-results-hover-button-bottom {
     position: absolute;
-    bottom: -50px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
+    opacity: 1;
+  }
+  
+  /* Desktop Hover Effects for Buttons */
+  @media (min-width: 768px) {
+    .what-about-results-hover-buttons {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .what-about-results-card:hover .what-about-results-hover-buttons {
+      opacity: 1;
+    }
+    .what-about-results-card:hover .what-about-results-card-title {
+      transform: translateY(-50px);
+    }
+    .what-about-results-card:hover .what-about-results-hover-button-left {
+      transform: translateX(20px);
+    }
+    .what-about-results-card:hover .what-about-results-hover-button-right {
+      transform: translateX(-20px);
+    }
+  }
+  
+/* ---------- STEPS SECTION ---------- */
+.steps-to-success-section {
+    padding: 20px;
+    background: var(--inside-cards-bg-color);
+    border-radius: 15px;
+    position: relative;
+}
+
+.steps-to-success-section h2 {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    color: var(--main-text-color);
+}
+
+.steps-to-success-section h3 {
+    text-align: center;
+    color: var(--accent-text-color);
+    padding-bottom: 30px;
+}
+  
+  /* Buttons in a row */
+  .steps-buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .step-button {
+    font-weight: bold;
+    text-transform: uppercase;
+    flex: 1;
+    padding: 15px;
+    border: none;
+    background: var(--site-bg-color);
+    color: var(--accent-text-color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  .step-button.active {
+    background: var(--main-btn-bg-color);
+    color: var(--main-btn-txt-color);
+  }
+  
+  /* Content container */
+  .steps-content-container {
+    position: relative;
+    background: var(--site-bg-color);
+    padding: 20px;
+    border-radius: 15px;
+    min-height: 150px;
+    margin-top: 20px;
+  }
+  
+  .steps-connector {
+    position: absolute;
+    width: 60px;
+    background: var(--accent-text-color);
+    left: var(--connector-left, 50%);
+    transform: translateX(-50%);
+    top: 60px;
+    height: 80px;
+    clip-path: polygon(0% 0%, 100% 0%, 80% 50%, 100% 100%, 0% 100%, 20% 50%);
+    transition: left 0.3s ease, top 0.3s ease, height 0.3s ease;
+  }
+  
+  .step-content {
+    display: none;
     opacity: 0;
-    transition: bottom 0.3s ease, opacity 0.3s ease;
-}
-
-/* Hover Effects */
-.what-about-results-card:hover .what-about-results-card-title {
-    transform: translateY(-50px);
-}
-
-.what-about-results-card:hover .what-about-results-hover-buttons {
+    transition: opacity 0.3s ease;
+  }
+  
+  .step-content.active {
+    display: block;
     opacity: 1;
-}
+    color: var(--main-text-color);
+  }
 
-.what-about-results-card:hover .what-about-results-hover-button-left {
-    transform: translateX(20px);
-}
+  .step-content.active i {
+    color: var(--accent-text-color);
+    font-size: 3rem;
+    padding-bottom: 10px;
+  }
+  
+  
+  /* ----------------------------- */
+  /*     CONTACT INDUSTRIES        */
+  /* ----------------------------- */
+  .contact-industries-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
-.what-about-results-card:hover .what-about-results-hover-button-right {
-    transform: translateX(-20px);
-}
+  }
+  
+  .industry-row {
+    display: grid; 
+    grid-template-columns: 1.3fr 0.1fr 1.5fr; 
+    grid-template-rows: 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas:  
+        "first center third"; 
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    height: 85px;
+    background-color: var(--inside-cards-bg-color);
+    border-radius: 15px;
+  }
 
-.what-about-results-card:hover .what-about-results-hover-button-bottom {
-    bottom: 20px;
-    opacity: 1;
+  .industry-row i,
+  .industry-row span {
+    grid-area: first;
+  }
+  
+  .industry-row span {
+    color: var(--main-text-color);
+    padding-left: 35px;
+  }
+
+  .industry-row i {
+    font-size: 1.2rem;
+    width: 25px;
+    color: var(--accent-text-color);
+  }
+  
+  .industry-button-connector {
+    width: 100%;
+    height: 1px;
+    background-color: var(--main-text-color);
 }
+  
+  .contact-industry-btn {
+    margin-left: auto;
+    padding: 8px 15px;
+    background: var(--accent-text-color);
+    border: none;
+    border-radius: 5px;
+    color: var(--site-bg-color);    
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .contact-industry-btn:hover {
+    background: var(--site-bg-color);
+    border: 1px solid var(--accent-text-color);
+    color: var(--accent-text-color);
+  }
+  
+  /* ----------------------------- */
+  /*        CONTACT MODAL          */
+  /* ----------------------------- */
+  .contact-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: var(--site-bg-color);
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    position: relative;
+    animation: modalSlide 0.3s ease-out;
+  }
+  
+  @keyframes modalSlide {
+    from {
+      transform: translateY(-100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
