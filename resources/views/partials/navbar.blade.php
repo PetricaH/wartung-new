@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <div class="navbar">
     <div class="logo_div">
-        <a href="{{ url('/') }}"><img src="/images/wartung-yellow-logo.svg" id="logo_image" alt="Logo"></a>
+        <a href="{{ url('/') }}"><img src="{{ Vite::asset('resources/images/wartung-yellow-logo.svg') }}" id="logo_image" alt="Logo"></a>
     </div>
 
     <button class="menu_toggle" id="menu_toggle">

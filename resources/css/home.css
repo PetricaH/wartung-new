@@ -62,7 +62,7 @@ section {
         left: 0;
         width: 100%;
         height: 1500px;
-        background: url('/images/hero-bg-top-layer.png') no-repeat center bottom;
+        background: url('/resources/images//hero-bg-top-layer.png') no-repeat center bottom;
         z-index: 1;
     }
 
@@ -87,7 +87,7 @@ h1 {
 }
 
 #hero-section {
-    background: url('/images/hero-bg.jpg');
+    background: url('/resources/images//hero-bg.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -115,7 +115,7 @@ h1 {
     left: 0;
     width: 100%;
     height: 1000px;
-    background: url('/images/hero-bg-top-layer.png') no-repeat center bottom;
+    background: url('/resources/images//hero-bg-top-layer.png') no-repeat center bottom;
     z-index: 1;
 }
 
@@ -306,7 +306,7 @@ span {
     background-color: red;
     position: relative;
     overflow: hidden;
-    background: url('/images/case-study-bg.png');
+    background: url('/resources/images//case-study-bg.png');
     background-size: cover;
     background-position: center;
     box-shadow: 0 10px 20px rgba(247, 209, 0, 0.2);
@@ -353,7 +353,7 @@ span {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url('/images/certificates-imgs/certificates-bg.png');
+    background: url('/resources/images//certificates-imgs/certificates-bg.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -452,11 +452,11 @@ span {
 
 /* Define the background images */
 .video-container.ximena {
-  background-image: url('/images/testi-ximena.png');
+  background-image: url('/resources/images//testi-ximena.png');
 }
 
 .video-container.imocon {
-  background-image: url('/images/testi-imocon.png');
+  background-image: url('/resources/images//testi-imocon.png');
 }
 
 /* On hover, zoom out the image to 100% (actual container size) */
@@ -800,19 +800,19 @@ span {
 }
   
   .what-about-results-curatenie-image-left {
-    background-image: url('/images/product-cards-imgs/left-curatenie.jpg');
+    background-image: url('/resources/images//product-cards-imgs/left-curatenie.jpg');
   }
   
   .what-about-results-curatenie-image-right {
-    background-image: url('/images/product-cards-imgs/right-curatenie.jpg');
+    background-image: url('/resources/images//product-cards-imgs/right-curatenie.jpg');
   }
 
   .what-about-results-lubrifiere-image-left {
-    background-image: url('/images/product-cards-imgs/left-lubrifiere.jpg');
+    background-image: url('/resources/images//product-cards-imgs/left-lubrifiere.jpg');
   }
   
   .what-about-results-lubrifiere-image-right {
-    background-image: url('/images/product-cards-imgs/right-lubrifiere.jpg');
+    background-image: url('/resources/images//product-cards-imgs/right-lubrifiere.jpg');
   }
   
   
@@ -826,11 +826,11 @@ span {
   }
   
   .what-about-results-card-serv .what-about-results-single-constructii-image {
-    background-image: url('/images/product-cards-imgs/constructii.jpg');
+    background-image: url('/resources/images/product-cards-imgs/constructii.jpg');
   }
 
   .what-about-results-card-serv .what-about-results-single-metalurgie-image {
-    background-image: url('/images/product-cards-imgs/metalurgie.jpg');
+    background-image: url('/resources/images/product-cards-imgs/metalurgie.jpg');
   }
   
   /* Card Title */
@@ -1006,12 +1006,12 @@ span {
 }
   
   .industry-row {
-    display: grid; 
-    grid-template-columns: 1.3fr 0.1fr 1.5fr; 
-    grid-template-rows: 1fr; 
-    gap: 0px 0px; 
-    grid-template-areas:  
-        "first center third"; 
+    display: grid;
+    grid-template-columns: 1.3fr 0.1fr 1.5fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "first center third";
     align-items: center;
     gap: 15px;
     padding: 15px;
@@ -1104,41 +1104,63 @@ span {
     font-size: 1.5rem;
     cursor: pointer;
   }
-  
 
-  /* Modal container (hidden by default) */
-.brevo-modal {
-    display: none; /* Hide by default */
-    position: fixed; 
-    z-index: 9999; 
-    left: 0; 
-    top: 0; 
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; /* Enable scrolling if needed */
-    background-color: rgba(0,0,0,0.5); /* semi-transparent backdrop */
+  /* Companies Showcase Section */
+.companies-showcase {
+  padding: 4rem 0;
+  overflow: hidden;
+  border-radius: 20px;
+  position: relative;
+  margin-bottom: 100px;
+}
+
+.logo-carousel {
+  display: flex;
+  flex-direction: column;
+  width: 200%;
+  animation: scroll 40s linear infinite;
+}
+
+.logo-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 50%;
+  flex-shrink: 0;
+}
+
+.company-logo {
+  filter: grayscale(1) brightness(1.2);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  max-width: 150px;
+  padding: 5rem 2rem;
+}
+
+.company-logo:hover {
+  filter: none;
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Pause animation on hover */
+.logo-carousel:hover {
+  animation-play-state: paused;
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .logo-carousel {
+      animation-duration: 30s;
   }
   
-  /* Modal content wrapper */
-  .brevo-modal-content {
-    background-color: #fff;
-    margin: 10% auto; /* 10% from top, center horizontally */
-    max-width: 600px;
-    border-radius: 8px;
-    position: relative;
-    padding: 20px;
-    /* You can add a fade-in animation or other styling here */
+  .company-logo {
+      max-width: 100px;
+      padding: 1rem;
   }
-  
-  /* Close button (X) in top-right corner */
-  .brevo-close {
-    color: #000;
-    float: right;
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .brevo-close:hover {
-    color: #999;
-  }
-  
+}
