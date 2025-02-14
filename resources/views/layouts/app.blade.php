@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Wartung')</title>
+    {{-- meta desciption --}}
+    <meta name="description" content="@yeld('meta-description', 'Partenerul firmelor care nu mai au probleme de întreținere')" />
 
     <!-- Link to your compiled CSS -->
     @vite([
